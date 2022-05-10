@@ -34,7 +34,7 @@ const MainNavigation = () => {
         <div className="imageWrapper">
           <Link href="/">
             <a>
-              <Image src="/logo.png" height={100} width={240} alt="logo" />
+              <Image src="/logo.png" height={78} width={232} alt="logo" />
             </a>
           </Link>
         </div>

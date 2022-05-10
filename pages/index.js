@@ -1,4 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request';
+import TopBar from '../components/productSection/TopBar';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   headers: {
@@ -8,7 +9,12 @@ const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
 
 const Home = ({ data }) => {
   console.log('data is ', data);
-  return <div>Home</div>;
+  return (
+    <div>
+      <TopBar />
+      Home
+    </div>
+  );
 };
 
 export default Home;
