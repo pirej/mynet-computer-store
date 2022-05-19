@@ -8,7 +8,7 @@ const Navigation = styled.div`
   .topHeader {
     display: flex;
     justify-content: space-between;
-    padding: 0 12%;
+    padding: 0 10%;
     height: 7rem;
     align-items: center;
   }
@@ -34,7 +34,7 @@ const MainNavigation = () => {
         <div className="imageWrapper">
           <Link href="/">
             <a>
-              <Image src="/logo.png" height={78} width={232} alt="logo" />
+              <Image src="/svg.svg" height={78} width={232} alt="logo" />
             </a>
           </Link>
         </div>

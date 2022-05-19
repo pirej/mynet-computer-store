@@ -11,6 +11,13 @@ const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
 
 const HomeStyle = styled.div`
   /* background-color: lightcoral; */
+  display: flex;
+  gap: 5%;
+  padding: 0 10%;
+
+  .mainProductSection {
+    width: 100%;
+  }
 `;
 
 const Home = ({ data }) => {

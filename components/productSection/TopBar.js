@@ -4,6 +4,7 @@ const StyledTopBar = styled.div`
   .sectionTitle {
     background-color: #004695;
     text-align: center;
+    border-radius: 6px 6px 0 0;
 
     .menuTitle {
       h3 {
