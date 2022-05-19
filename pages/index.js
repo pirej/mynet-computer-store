@@ -1,5 +1,7 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import TopBar from '../components/productSection/TopBar';
+import styled from 'styled-components';
+import MenuList from '../components/menulist/MenuList';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   headers: {
@@ -7,13 +9,22 @@ const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   },
 });
 
+const HomeStyle = styled.div`
+  /* background-color: lightcoral; */
+`;
+
 const Home = ({ data }) => {
   console.log('data is ', data);
   return (
-    <div>
-      <TopBar />
-      Home
-    </div>
+    <HomeStyle>
+      <div className="menu">
+        <MenuList />
+      </div>
+      <div className="mainProductSection">
+        <TopBar />
+        <div className="productCardsLayout">Home</div>
+      </div>
+    </HomeStyle>
   );
 };
 
