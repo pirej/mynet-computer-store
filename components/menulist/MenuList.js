@@ -1,7 +1,50 @@
+import { GraphQLClient, gql } from 'graphql-request';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import ListItemFake from './ListItemFake';
+
+const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
+  headers: {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_GRAPHCMS_TOKEN}`,
+  },
+});
+
+const query = gql`
+  {
+    cPUs {
+      id
+      brand
+      title
+      slug
+    }
+    gPUs {
+      id
+      brand
+      title
+      slug
+    }
+    laptops {
+      id
+      brand
+      title
+      slug
+    }
+    motherboards {
+      id
+      brand
+      title
+      slug
+    }
+    storage_Equipment {
+      id
+      brand
+      title
+      slug
+    }
+  }
+`;
 
 const StyledMenu = styled.div`
   background-color: lightblue;
@@ -57,6 +100,18 @@ const StyledMenu = styled.div`
 `;
 
 const MenuList = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function getMenuItems() {
+      const data = await graphcms.request(query);
+      setData(data);
+    }
+    getMenuItems();
+  }, []);
+
+  console.log('fetched data is', data);
+
   return (
     <StyledMenu>
       <div className="menuOnLeft">
