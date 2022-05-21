@@ -144,7 +144,7 @@ const MenuList = () => {
             return (
               <ListItem
                 key={idx}
-                itemDetails={productsArr[idx]}
+                // itemDetails={productsArr[idx]}
                 itemTitle={listItemTitle}
                 uniqueBrands={uniqueBrands}
                 rawTitle={item}
