@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import ListItemFake from './ListItemFake';
+import ListItem from './ListItem';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -110,7 +111,10 @@ const MenuList = () => {
     getMenuItems();
   }, []);
 
-  console.log('fetched data is', data);
+  //-----------------------------
+  const productsArr = Object.values(data);
+  const productsListArr = Object.keys(data);
+  //-----------------------------
 
   return (
     <StyledMenu>
@@ -128,7 +132,25 @@ const MenuList = () => {
               <p>New & Promo Products</p>
             </Link>
           </div>
+          {productsListArr.map((item, idx) => {
+            const spaced = item.replace('_', ' ');
+            const listItemTitle =
+              spaced.charAt(0).toUpperCase() + spaced.slice(1);
+            const productBrands = productsArr[idx].map((item, idx) => {
+              return item.brand;
+            });
 
+            const uniqueBrands = [...new Set(productBrands)];
+            return (
+              <ListItem
+                key={idx}
+                itemDetails={productsArr[idx]}
+                itemTitle={listItemTitle}
+                uniqueBrands={uniqueBrands}
+                rawTitle={item}
+              />
+            );
+          })}
           <ListItemFake />
           <div className="bottomBar">
             <h3>Products ↑</h3>
