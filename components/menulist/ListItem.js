@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Link from 'next/Link';
 
 const StyledItem = styled.div`
   .menuSubmenu {
@@ -39,14 +40,18 @@ const ListItem = props => {
     >
       <div className="menuSubmenu">
         <div className="noBrandItem">
-          <p>{itemTitle}</p>
+          <Link href={`/products/all/${rawTitle}`}>
+            <p>{itemTitle}</p>
+          </Link>
         </div>
         <div className="subItemDiv">
           {brands &&
             brands.map((brand, idx) => {
               return (
                 <div key={idx}>
-                  <p>{brand}</p>
+                  <Link href={`/products/brands/${brand}-${rawTitle}`}>
+                    <p>{brand}</p>
+                  </Link>
                 </div>
               );
             })}

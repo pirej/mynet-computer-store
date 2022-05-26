@@ -78,8 +78,8 @@ const StyledMenu = styled.div`
       margin: 0;
       :hover {
         cursor: pointer;
-        background-color: #c3ced9;
-        border-color: #d1dfed;
+        background-color: #d1dfed;
+        border-color: #c3ced9;
       }
     }
 
