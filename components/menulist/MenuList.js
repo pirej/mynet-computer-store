@@ -1,7 +1,6 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import React from 'react';
 import styled from 'styled-components';
 import ListItemFake from './ListItemFake';
 import ListItem from './ListItem';

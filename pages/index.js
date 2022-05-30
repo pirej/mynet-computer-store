@@ -2,6 +2,8 @@ import { GraphQLClient, gql } from 'graphql-request';
 import TopBar from '../components/productSection/TopBar';
 import styled from 'styled-components';
 import MenuList from '../components/menulist/MenuList';
+import ProductCard from '../components/ProductCard';
+import Link from 'next/link';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   headers: {
@@ -17,19 +19,49 @@ const HomeStyle = styled.div`
 
   .mainProductSection {
     width: 100%;
+    .productCardsLayout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-around;
+    }
   }
 `;
 
 const Home = ({ data }) => {
-  // console.log('data is ', data);
+  console.log('data is ', data);
+  const topBarTitle = 'New & Promo Products';
+  const productsArray = Object.values(data);
+
+  let myItems = [];
+
+  productsArray.map(items => {
+    items.map(item => {
+      myItems.push(item);
+      return;
+    });
+  });
+
+  // console.log('myItems is ', myItems);
+
   return (
     <HomeStyle>
       <div className="menu">
         <MenuList />
       </div>
       <div className="mainProductSection">
-        <TopBar />
-        <div className="productCardsLayout">Home</div>
+        <TopBar title={topBarTitle} />
+        <div className="productCardsLayout">
+          {myItems.map(item => {
+            return (
+              <Link href={`/promotions/${item.slug}`} key={item.id}>
+                <a>
+                  <ProductCard />
+                </a>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </HomeStyle>
   );

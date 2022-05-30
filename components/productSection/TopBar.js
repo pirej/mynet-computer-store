@@ -17,12 +17,12 @@ const StyledTopBar = styled.div`
   }
 `;
 
-const TopBar = () => {
+const TopBar = props => {
   return (
     <StyledTopBar>
       <div className="sectionTitle">
         <div className="menuTitle">
-          <h3>Top Bar Title</h3>
+          {props.title ? <h3>{props.title}</h3> : <h3>Products</h3>}
         </div>
       </div>
     </StyledTopBar>
