@@ -56,7 +56,7 @@ const Home = ({ data }) => {
             return (
               <Link href={`/promotions/${item.slug}`} key={item.id}>
                 <a>
-                  <ProductCard />
+                  <ProductCard item={item} />
                 </a>
               </Link>
             );
