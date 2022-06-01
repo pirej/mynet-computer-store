@@ -13,4 +13,37 @@ a {
 
 * {
   box-sizing: border-box;
+  color: #3f6795;
+  font-weight: 500;
+}
+
+.btn {
+  text-align: center;
+}
+
+.btn button {
+  background-color: #19a695;
+
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn button:hover {
+  cursor: pointer;
+  background-color: #00bfa9;
+}
+
+.outOfStock {
+  opacity: 0.8;
+}
+
+.outOfStock button {
+  background-color: #95a6a4;
+  cursor: not-allowed !important;
+}
+.outOfStock button:hover {
+  background-color: #95a6a4;
 }

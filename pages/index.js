@@ -84,6 +84,7 @@ const MyQuery = gql`
       slug
       title
       subtitle
+      stock
     }
     gPUs(where: { OR: [{ newproduct: true }, { promotion: true }] }) {
       id
@@ -98,6 +99,7 @@ const MyQuery = gql`
       slug
       title
       subtitle
+      stock
     }
     laptops(where: { OR: [{ newproduct: true }, { promotion: true }] }) {
       id
@@ -112,6 +114,7 @@ const MyQuery = gql`
       slug
       title
       subtitle
+      stock
     }
     motherboards(where: { OR: [{ newproduct: true }, { promotion: true }] }) {
       id
@@ -126,6 +129,7 @@ const MyQuery = gql`
       slug
       title
       subtitle
+      stock
     }
     storage_Equipment(
       where: { OR: [{ newproduct: true }, { promotion: true }] }
@@ -142,6 +146,7 @@ const MyQuery = gql`
       slug
       title
       subtitle
+      stock
     }
   }
 `;

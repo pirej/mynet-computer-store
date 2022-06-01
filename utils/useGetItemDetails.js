@@ -17,8 +17,7 @@ const useGetItemDetails = item => {
     ? '/promo.png'
     : '/transp.png';
 
-  const mainImgSrc = item.images.url;
-  // const mainImgSrc = item.images.url || item.images[0].url;
+  const mainImgSrc = item.images.url || item.images[0].url;
 
   const id = item.id;
   const title = item.title;
