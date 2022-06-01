@@ -52,7 +52,7 @@ const BrandOfProducts = ({ data }) => {
               return (
                 <Link href={`/products/${item.slug}`} key={item.id}>
                   <a>
-                    <ProductCard />
+                    <ProductCard item={item} />
                   </a>
                 </Link>
               );
