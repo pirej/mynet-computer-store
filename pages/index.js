@@ -54,7 +54,7 @@ const Home = ({ data }) => {
         <div className="productCardsLayout">
           {myItems.map(item => {
             return (
-              <Link href={`/promotions/${item.slug}`} key={item.id}>
+              <Link href={`/products/${item.slug}`} key={item.id}>
                 <a>
                   <ProductCard item={item} />
                 </a>
