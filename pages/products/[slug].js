@@ -1,5 +1,8 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import styled from 'styled-components';
+import MenuList from '../../components/menulist/MenuList';
+import TopBar from '../../components/productSection/TopBar';
+import useGetItemDetails from '../../utils/useGetItemDetails';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -12,7 +15,36 @@ const ProductStyle = styled.div`
 `;
 
 const SlugPage = ({ product }) => {
-  console.log('product is', product);
+  // console.log('product is', product);
+
+  const productArray = Object.values(product);
+  // console.log('productArray is', productArray);
+
+  let item = {};
+  productArray.map(items => {
+    items.map(i => {
+      item = i;
+    });
+  });
+
+  const {
+    isNewProd,
+    isPromoProd,
+    price,
+    tempPrice,
+    discount,
+    discountPrice,
+    imgsrc,
+    mainImgSrc,
+    id,
+    title,
+    stock,
+    numItems,
+    mainContent,
+  } = useGetItemDetails(item);
+
+  // console.log('item is', item);
+
   return <ProductStyle>SlugPage</ProductStyle>;
 };
 
