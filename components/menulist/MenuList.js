@@ -47,7 +47,7 @@ const query = gql`
 `;
 
 const StyledMenu = styled.div`
-  background-color: lightblue;
+  /* background-color: lightblue; */
   .menuSection {
     min-width: 14.5rem;
     max-width: 14.5rem;

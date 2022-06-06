@@ -1,4 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request';
+import { RichText } from '@graphcms/rich-text-react-renderer';
 import styled from 'styled-components';
 import MenuList from '../../components/menulist/MenuList';
 import TopBar from '../../components/productSection/TopBar';
@@ -12,6 +13,20 @@ const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
 
 const ProductStyle = styled.div`
   /* background-color: lightblue; */
+  display: flex;
+  gap: 5%;
+  padding: 0 10%;
+
+  .productSection {
+    width: 100%;
+
+    .text-bold {
+      font-weight: bold;
+    }
+    .text-italic {
+      font-style: italic;
+    }
+  }
 `;
 
 const SlugPage = ({ product }) => {
@@ -38,14 +53,70 @@ const SlugPage = ({ product }) => {
     mainImgSrc,
     id,
     title,
+    subtitle,
     stock,
     numItems,
     mainContent,
+    manufacturer,
   } = useGetItemDetails(item);
 
   // console.log('item is', item);
 
-  return <ProductStyle>SlugPage</ProductStyle>;
+  return (
+    <ProductStyle>
+      <div className="menuSection">
+        <MenuList />
+      </div>
+      <div className="productSection">
+        <div className="productTitle">
+          <TopBar title={title} />
+        </div>
+        <div className="productInfo">
+          <div className="productDetails">
+            <div className="product">
+              <div className="subtitle">
+                <h3>{subtitle}</h3>
+              </div>
+              <div className="allDescription">
+                <div className="productDescriptionTitle">
+                  <p>Product description:</p>
+                </div>
+                <div className="productDescription">
+                  <RichText
+                    content={mainContent}
+                    renderers={{
+                      h1: ({ children }) => (
+                        <h1 className="text-normal">{children}</h1>
+                      ),
+                      h2: ({ children }) => (
+                        <h2 className="text-normal">{children}</h2>
+                      ),
+                      h3: ({ children }) => (
+                        <h3 className="text-normal">{children}</h3>
+                      ),
+                      h4: ({ children }) => (
+                        <h4 className="text-normal">{children}</h4>
+                      ),
+                      p: ({ children }) => (
+                        <p className="text-normal">{children}</p>
+                      ),
+                      bold: ({ children }) => (
+                        <strong className="text-bold">{children}</strong>
+                      ),
+                      italic: ({ children }) => (
+                        <span className="text-italic">{children}</span>
+                      ),
+                    }}
+                  />
+                  <a href={manufacturer}>More product details:</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ProductStyle>
+  );
 };
 
 export default SlugPage;
@@ -65,6 +136,7 @@ export async function getServerSideProps(context) {
         slug
         stock
         title
+        subtitle
         images {
           url
         }
@@ -86,6 +158,7 @@ export async function getServerSideProps(context) {
         slug
         stock
         title
+        subtitle
         images {
           url
         }
@@ -107,6 +180,7 @@ export async function getServerSideProps(context) {
         slug
         stock
         title
+        subtitle
         images {
           url
         }
@@ -128,6 +202,7 @@ export async function getServerSideProps(context) {
         slug
         stock
         title
+        subtitle
         images {
           url
         }
@@ -149,6 +224,7 @@ export async function getServerSideProps(context) {
         slug
         stock
         title
+        subtitle
         images {
           url
         }

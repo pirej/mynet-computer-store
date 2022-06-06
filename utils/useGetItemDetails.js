@@ -3,7 +3,7 @@ function insertDecimal(num) {
 }
 
 const useGetItemDetails = item => {
-  // console.log('the item props', item);
+  // console.log('the descriotion', item.description.raw.children);
 
   const isNewProd = item.newproduct;
   const isPromoProd = item.promotion;
@@ -21,7 +21,10 @@ const useGetItemDetails = item => {
 
   const id = item.id;
   const title = item.title;
+  const subtitle = item.subtitle;
   const stock = item.stock;
+  const mainContent = item.description.raw.children;
+  const manufacturer = item.manufacturerLink;
 
   return {
     isNewProd,
@@ -34,7 +37,10 @@ const useGetItemDetails = item => {
     mainImgSrc,
     id,
     title,
+    subtitle,
     stock,
+    mainContent,
+    manufacturer,
   };
 };
 
