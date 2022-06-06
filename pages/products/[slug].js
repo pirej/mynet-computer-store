@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MenuList from '../../components/menulist/MenuList';
 import TopBar from '../../components/productSection/TopBar';
 import useGetItemDetails from '../../utils/useGetItemDetails';
+import Image from 'next/image';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -110,6 +111,21 @@ const SlugPage = ({ product }) => {
                   />
                   <a href={manufacturer}>More product details:</a>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className="productPreview">
+            <div className="previewWrapper">
+              <div className="ImageWrapper">
+                <div className="promoBanner">
+                  <Image
+                    src={imgsrc}
+                    height={90}
+                    width={145}
+                    alt="promo-new-product"
+                  />
+                </div>
+                <Image src={mainImgSrc} height={478} width={478} alt={title} />
               </div>
             </div>
           </div>
