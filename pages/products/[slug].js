@@ -14,7 +14,6 @@ const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
 });
 
 const ProductStyle = styled.div`
-  /* background-color: lightblue; */
   display: flex;
   gap: 5%;
   padding: 0 10%;
@@ -22,11 +21,113 @@ const ProductStyle = styled.div`
   .productSection {
     width: 100%;
 
-    .text-bold {
-      font-weight: bold;
-    }
-    .text-italic {
-      font-style: italic;
+    .productInfo {
+      display: flex;
+      gap: 2rem;
+      padding: 2% 3%;
+      .text-bold {
+        font-weight: bold;
+      }
+      .text-italic {
+        font-style: italic;
+      }
+
+      .productDetails {
+        /* background-color: lightblue; */
+        padding: 0 1rem;
+
+        .subtitle {
+          text-align: center;
+          padding-bottom: 0.2rem;
+          h3 {
+            background-color: #e9edf2;
+            border: solid 1px #c3ced9;
+            padding: 0.3rem 0.4rem;
+            border-radius: 4px;
+          }
+        }
+        .productDescriptionTitle {
+          text-align: left;
+          p {
+            font-size: 1.05rem;
+            font-weight: bold;
+          }
+        }
+
+        .allDescription {
+          margin: 5%;
+        }
+        .productInfoLink {
+          color: #4d71c6;
+          text-decoration: underline;
+        }
+      }
+      .productPreview {
+        padding: 0 1rem;
+        .previewWrapper {
+          text-align: center;
+          .promoBanner {
+            position: absolute;
+            transform: translate(+20%, +40%);
+            z-index: 100;
+            width: 8vw;
+          }
+        }
+      }
+      .prices {
+        font-size: 1.1rem;
+        p {
+          margin: 0.7rem;
+        }
+
+        .fadedPrice {
+          color: #7c90a6;
+          span {
+            color: #cc194c;
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+        }
+        .newProduct {
+          span {
+            color: #cc194c;
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+        }
+
+        .promoPrice {
+          span {
+            color: #cc194c;
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+        }
+        .price {
+          span {
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+        }
+        .warranty {
+          span {
+            font-weight: 600;
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .btn {
+        padding-top: 0.7rem;
+        button {
+          display: flex;
+          align-items: center;
+          margin: auto;
+          padding: 0.5rem 2.2rem;
+          .cartIconWrap {
+            padding-left: 0.5rem;
+          }
+        }
+      }
     }
   }
 `;
@@ -111,7 +212,9 @@ const SlugPage = ({ product }) => {
                       ),
                     }}
                   />
-                  <a href={manufacturer}>More product details:</a>
+                  <a className="productInfoLink" href={manufacturer}>
+                    More product details:
+                  </a>
                 </div>
               </div>
             </div>
