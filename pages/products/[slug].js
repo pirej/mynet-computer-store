@@ -59,6 +59,7 @@ const SlugPage = ({ product }) => {
     numItems,
     mainContent,
     manufacturer,
+    warranty,
   } = useGetItemDetails(item);
 
   // console.log('item is', item);
@@ -126,6 +127,35 @@ const SlugPage = ({ product }) => {
                   />
                 </div>
                 <Image src={mainImgSrc} height={478} width={478} alt={title} />
+              </div>
+              <div className="priceSection">
+                <div className="prices">
+                  {isPromoProd ? (
+                    <div>
+                      <p className="fadedPrice">
+                        Price: ${price} <span>-{discount}% OFF</span>
+                      </p>
+                      <p className="promoPrice">
+                        Promo price = <span>${discountPrice}</span>
+                      </p>
+                    </div>
+                  ) : isNewProd ? (
+                    <div>
+                      <p className="newProduct">
+                        <span>NEW</span> Product
+                      </p>
+                      <p className="price">Current price ${price}</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="regularProduct">Regular Product</p>
+                      <p className="price">Current price ${price}</p>
+                    </div>
+                  )}
+                  <p className="warranty">
+                    Warranty: <span>{warranty}</span> months
+                  </p>
+                </div>
               </div>
             </div>
           </div>
