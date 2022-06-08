@@ -5,6 +5,7 @@ import MenuList from '../../components/menulist/MenuList';
 import TopBar from '../../components/productSection/TopBar';
 import useGetItemDetails from '../../utils/useGetItemDetails';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -156,6 +157,22 @@ const SlugPage = ({ product }) => {
                     Warranty: <span>{warranty}</span> months
                   </p>
                 </div>
+              </div>
+
+              <div className={`btn ${stock < 1 && 'outOfStock'} `}>
+                <Link href="#">
+                  <button>
+                    {stock > 0 ? 'Add to Cart' : ' Out of Stock'}
+                    <div className="cartIconWrap">
+                      <Image
+                        src="/cartIcon-white.svg"
+                        height={18}
+                        width={18}
+                        alt="cartIcon"
+                      />
+                    </div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
