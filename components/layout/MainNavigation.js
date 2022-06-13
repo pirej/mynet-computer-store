@@ -46,7 +46,7 @@ const MainNavigation = () => {
           </ul>
           <ul>
             <li>
-              <Link href="/">contact</Link>
+              <Link href="/contact">contact</Link>
             </li>
           </ul>
           <div className="cartWrapper">
