@@ -14,16 +14,41 @@ const ContactStyle = styled.div`
     .contactSection {
       padding: 0;
       padding: 0 10%;
-      /* display: flex;
+      display: flex;
       flex-direction: column;
-      justify-content: space-around; */
 
       .sectionTitle {
         text-align: center;
         h3 {
-          /* font-weight: 700; */
           font-size: 1.25rem;
           letter-spacing: 0.05rem;
+        }
+      }
+    }
+
+    .infoSection {
+      flex: 5;
+      .infoCard {
+        background-color: #e9edf2;
+        border: solid 1px #c3ced9;
+        border-radius: 4px;
+        padding: 0 1rem;
+        margin: 1.5rem 0.5rem;
+        h4 {
+          color: #3f6795;
+          margin: 1.23rem 0;
+        }
+        span {
+          color: #7c90a6;
+        }
+        hr {
+          border: 0;
+          height: 1px;
+          background: #c3ced9;
+        }
+        .cardHeadline {
+          text-align: center;
+          margin: 0.8rem 0;
         }
       }
     }
@@ -31,7 +56,10 @@ const ContactStyle = styled.div`
     .formAndInfo {
       display: flex;
       padding: 0 4%;
+      gap: 9%;
+
       .formWrap {
+        flex: 8;
         padding: 0 0.5rem;
         .theForm {
           border-radius: 4px;
@@ -184,6 +212,27 @@ const ContactPage = () => {
                   {sent && <span className="sentSpan">Message sent!</span>}
                 </div>
               </form>
+            </div>
+            <div className="infoSection">
+              <div className="infoCard">
+                <h4 className="cardHeadline">Contact Info</h4>
+                <hr />
+                <h4>
+                  <span>Name: </span>John Doe
+                </h4>
+                <h4>
+                  <span>Telephone: </span>123 456 789
+                </h4>
+                <h4>
+                  <span>Email: </span>john@randomplace.com
+                </h4>
+                <h4>
+                  <span>Address: </span>Dark Street, 148
+                </h4>
+                <h4>
+                  <span>Location: </span>Skopje, Macedonia
+                </h4>
+              </div>
             </div>
           </div>
         </div>
