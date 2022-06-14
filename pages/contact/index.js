@@ -53,6 +53,24 @@ const ContactStyle = styled.div`
       }
     }
 
+    .mapSection {
+      padding: 0 5%;
+      .map {
+        overflow: hidden;
+        padding-bottom: 60%;
+        position: relative;
+        height: 0;
+      }
+
+      .map iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+    }
+
     .formAndInfo {
       display: flex;
       padding: 0 4%;
@@ -233,6 +251,18 @@ const ContactPage = () => {
                   <span>Location: </span>Skopje, Macedonia
                 </h4>
               </div>
+            </div>
+          </div>
+          <div className="mapSection">
+            <div className="map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d377.01798506574033!2d21.43149099191016!3d41.99582652116158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415b198820fbf%3A0x67dd8bb78356b990!2sAlexander%20the%20Great%20Statue!5e1!3m2!1sen!2smk!4v1655167088487!5m2!1sen!2smk"
+                width="600"
+                height="450"
+                frameBorder="0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
         </div>
