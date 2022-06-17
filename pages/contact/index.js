@@ -75,6 +75,7 @@ const ContactStyle = styled.div`
       display: flex;
       padding: 0 4%;
       gap: 9%;
+      margin-bottom: 2rem;
 
       .formWrap {
         flex: 8;
