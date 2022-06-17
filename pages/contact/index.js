@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
-import MenuList from '../../components/menuList/MenuList';
+import MenuList from '../../components/menulist/MenuList';
 import TopBar from '../../components/productSection/TopBar';
 
 const ContactStyle = styled.div`
@@ -262,7 +262,7 @@ const ContactPage = () => {
                 height="450"
                 frameBorder="0"
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
