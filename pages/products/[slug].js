@@ -136,8 +136,8 @@ const ProductStyle = styled.div`
 const SlugPage = ({ product }) => {
   // console.log('product is', product);
   //-----------------------------------------
-  const { testID, getProducts } = useProductContext();
-  console.log('ID pushed from slug is', testID);
+  const { addToCart } = useProductContext();
+  // console.log('ID pushed from slug is', testID);
 
   //-----------------------------------------
   const productArray = Object.values(product);
@@ -268,9 +268,22 @@ const SlugPage = ({ product }) => {
               </div>
 
               <div className={`btn ${stock < 1 && 'outOfStock'} `}>
-                <Link href="/cart">
-                  <button onClick={() => getProducts(id)}>
-                    {stock > 0 ? 'Add to Cart' : ' Out of Stock'}
+                <Link href={`${stock > 0 ? '/cart' : '#'}`} passHref>
+                  <button
+                    onClick={() =>
+                      stock > 0
+                        ? addToCart(
+                            id,
+                            title,
+                            stock,
+                            price,
+                            discount,
+                            mainImgSrc
+                          )
+                        : ''
+                    }
+                  >
+                    {stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                     <div className="cartIconWrap">
                       <Image
                         src="/cartIcon-white.svg"

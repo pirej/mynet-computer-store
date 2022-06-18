@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import useGetItemDetails from '../utils/useGetItemDetails';
 import { useProductContext } from '../state/context/productContext';
+import AddToCart from '../pages/cart';
 
 const CardStyle = styled.div`
   margin-bottom: 2rem;
@@ -76,8 +77,8 @@ const CardStyle = styled.div`
 const ProductCard = ({ item }) => {
   const { banner, setBanner } = useState(false);
   //--------------------------------------------
-  const { testID, getProducts } = useProductContext();
-  console.log('ID pushed from ProductCard is', testID);
+  const { addToCart } = useProductContext();
+  // console.log('ID pushed from ProductCard is', testID);
   //--------------------------------------------
   const {
     isNewProd,
@@ -148,8 +149,14 @@ const ProductCard = ({ item }) => {
         )}
       </div>
       <div className={`btn ${stock < 1 && 'outOfStock'}`}>
-        <Link href="/cart" passHref>
-          <button onClick={() => getProducts(id)}>
+        <Link href={`${stock > 0 ? '/cart' : '#'}`} passHref>
+          <button
+            onClick={() =>
+              stock > 0
+                ? addToCart(id, title, stock, price, discount, mainImgSrc)
+                : ''
+            }
+          >
             {stock > 0 ? 'Add to Cart' : 'Out of Stock'}
 
             <div className="cartIcoWrap">

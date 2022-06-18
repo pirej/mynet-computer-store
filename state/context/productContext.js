@@ -4,15 +4,15 @@ import { useContext, createContext, useReducer } from 'react';
 export const ProductContext = createContext();
 
 const initialState = {
-  data: {
-    id: '',
-  },
+  cart: [],
 };
 
 export const productReducer = (state, action) => {
   switch (action.type) {
-    case 'PRODUCT_DATA_FOR_CART':
-      return { ...state, testID: action.payload };
+    case 'ADD_TO_CART':
+      const { id, title, stock, price, discount, mainImgSrc } = action.payload;
+      return { ...state, cart: [...state.cart, action.payload] };
+    //---------------
     default:
       return state;
   }
@@ -21,12 +21,15 @@ export const productReducer = (state, action) => {
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
-  const getProducts = data => {
-    dispatch({ type: 'PRODUCT_DATA_FOR_CART', payload: data });
+  const addToCart = (id, title, stock, price, discount, mainImgSrc) => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: { id, title, stock, price, discount, mainImgSrc },
+    });
   };
 
   return (
-    <ProductContext.Provider value={{ ...state, getProducts }}>
+    <ProductContext.Provider value={{ ...state, addToCart }}>
       {children}
     </ProductContext.Provider>
   );

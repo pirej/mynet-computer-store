@@ -11,14 +11,24 @@ const StyledCartPage = styled.div`
 `;
 
 const AddToCart = () => {
-  const { testID } = useProductContext();
-  console.log(' fetched cartID from context is ', testID);
+  const data = useProductContext();
+  console.log('cart data is ', data);
+  //----------------
   return (
     <StyledCartPage>
       <div className="mainCartSection">
         <TopBar title="Cart Page" />
-        <h3>This Is The Cart Page</h3>
-        {testID && <h3>Item with ID {testID} is in cart</h3>}
+        {data.cart.length ? (
+          <div>
+            <h2>Your cart items:</h2>
+            <h3 style={{ color: '#19A695' }}>{data.cart[0].title}</h3>
+            <h3 style={{ color: '#19A695' }}>Stock: {data.cart[0].stock}</h3>
+          </div>
+        ) : (
+          <div>
+            <h2 style={{ color: '#E05539' }}>Your Cart is Empty</h2>
+          </div>
+        )}
       </div>
     </StyledCartPage>
   );
