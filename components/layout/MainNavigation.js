@@ -50,7 +50,7 @@ const MainNavigation = () => {
             </li>
           </ul>
           <div className="cartWrapper">
-            <Link href="#">
+            <Link href="/cart">
               <a>
                 <Image
                   src="/cartIcon.svg"

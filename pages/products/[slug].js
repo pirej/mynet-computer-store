@@ -263,7 +263,7 @@ const SlugPage = ({ product }) => {
               </div>
 
               <div className={`btn ${stock < 1 && 'outOfStock'} `}>
-                <Link href="#">
+                <Link href="/cart">
                   <button>
                     {stock > 0 ? 'Add to Cart' : ' Out of Stock'}
                     <div className="cartIconWrap">

@@ -144,7 +144,7 @@ const ProductCard = ({ item }) => {
         )}
       </div>
       <div className={`btn ${stock < 1 && 'outOfStock'}`}>
-        <Link href="#" passHref>
+        <Link href="/cart" passHref>
           <button>
             {stock > 0 ? 'Add to Cart' : 'Out of Stock'}
 
