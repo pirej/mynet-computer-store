@@ -278,7 +278,8 @@ const SlugPage = ({ product }) => {
                             stock,
                             price,
                             discount,
-                            mainImgSrc
+                            mainImgSrc,
+                            numItems
                           )
                         : ''
                     }

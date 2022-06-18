@@ -30,6 +30,7 @@ const useGetItemDetails = item => {
   const stock = item.stock;
   const manufacturer = item.manufacturerLink;
   const warranty = item.warranty;
+  const numItems = 1;
 
   return {
     isNewProd,
@@ -47,6 +48,7 @@ const useGetItemDetails = item => {
     mainContent,
     manufacturer,
     warranty,
+    numItems,
   };
 };
 

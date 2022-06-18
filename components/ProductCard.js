@@ -153,7 +153,15 @@ const ProductCard = ({ item }) => {
           <button
             onClick={() =>
               stock > 0
-                ? addToCart(id, title, stock, price, discount, mainImgSrc)
+                ? addToCart(
+                    id,
+                    title,
+                    stock,
+                    price,
+                    discount,
+                    mainImgSrc,
+                    numItems
+                  )
                 : ''
             }
           >
