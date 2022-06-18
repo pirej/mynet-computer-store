@@ -6,6 +6,7 @@ import TopBar from '../../components/productSection/TopBar';
 import useGetItemDetails from '../../utils/useGetItemDetails';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useProductContext } from '../../state/context/productContext';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -134,7 +135,11 @@ const ProductStyle = styled.div`
 
 const SlugPage = ({ product }) => {
   // console.log('product is', product);
+  //-----------------------------------------
+  const { testID, getProducts } = useProductContext();
+  console.log('ID pushed from slug is', testID);
 
+  //-----------------------------------------
   const productArray = Object.values(product);
   // console.log('productArray is', productArray);
 
@@ -264,7 +269,7 @@ const SlugPage = ({ product }) => {
 
               <div className={`btn ${stock < 1 && 'outOfStock'} `}>
                 <Link href="/cart">
-                  <button>
+                  <button onClick={() => getProducts(id)}>
                     {stock > 0 ? 'Add to Cart' : ' Out of Stock'}
                     <div className="cartIconWrap">
                       <Image

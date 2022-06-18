@@ -29,7 +29,7 @@ const HomeStyle = styled.div`
 `;
 
 const Home = ({ data }) => {
-  console.log('data is ', data);
+  // console.log('data is ', data);
   const topBarTitle = 'New & Promo Products';
   const productsArray = Object.values(data);
 
