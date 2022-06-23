@@ -78,6 +78,19 @@ const StyledCartPage = styled.div`
       }
     }
   }
+  .emptyCart {
+    h2 {
+      margin: 3rem 2rem;
+      color: #e05539;
+      font-size: 2rem;
+    }
+    .btn {
+      button {
+        font-size: 1.1rem;
+        letter-spacing: 0.05rem;
+      }
+    }
+  }
 `;
 
 const AddToCart = () => {
@@ -96,48 +109,55 @@ const AddToCart = () => {
     <StyledCartPage>
       <div className="mainCartSection">
         <TopBar title="Cart Page" />
-        <h2>Your Cart Items:</h2>
-        <div className="cartInfoSection">
-          <div className="cartInfo">
-            <div className="infoSection">
-              <div className="columnTitle">
-                <h4>Item</h4>
-                <h4>Price</h4>
-                <h4>Quantity</h4>
-                <h4>Subtotal</h4>
+        {!loading && cart.length ? (
+          <div className="ifCart">
+            <h2>Your Cart Items:</h2>
+            <div className="cartInfoSection">
+              <div className="cartInfo">
+                <div className="infoSection">
+                  <div className="columnTitle">
+                    <h4>Item</h4>
+                    <h4>Price</h4>
+                    <h4>Quantity</h4>
+                    <h4>Subtotal</h4>
+                  </div>
+                </div>
+              </div>
+              {cart.map(item => {
+                return (
+                  <div key={item.id}>
+                    <CartComponent item={item} />
+                  </div>
+                );
+              })}
+              <div className="bordering">
+                <hr />
+              </div>
+              <div className="buttons">
+                <div className="btn link">
+                  <button>
+                    <Link href="/">Continue Shopping</Link>
+                  </button>
+                </div>
+                <div className="btn">
+                  <button onClick={() => clearCart()}>Clear The Cart</button>
+                </div>
+              </div>
+              <div className="total">
+                <p>Total amount: $xxxx</p>
               </div>
             </div>
           </div>
-          {!loading && cart.length ? (
-            cart.map(item => {
-              return (
-                <div key={item.id}>
-                  <CartComponent item={item} />
-                </div>
-              );
-            })
-          ) : (
-            <div>
-              <h3 style={{ color: '#4d71cb' }}>Your Cart is Empty</h3>
-            </div>
-          )}
-          <div className="bordering">
-            <hr />
-          </div>
-          <div className="buttons">
-            <div className="btn link">
+        ) : (
+          <div className="emptyCart">
+            <h2>Your Cart is Empty</h2>
+            <div className="btn">
               <button>
-                <Link href="/">Continue Shopping</Link>
+                <Link href="/">Go Shopping</Link>
               </button>
             </div>
-            <div className="btn">
-              <button onClick={() => clearCart()}>Clear The Cart</button>
-            </div>
           </div>
-          <div className="total">
-            <p>Total amount: $xxxx</p>
-          </div>
-        </div>
+        )}
       </div>
     </StyledCartPage>
   );
