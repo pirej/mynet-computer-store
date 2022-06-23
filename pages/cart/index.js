@@ -3,6 +3,7 @@ import TopBar from '../../components/productSection/TopBar';
 import styled from 'styled-components';
 import { useProductContext } from '../../state/context/productContext';
 import CartComponent from '../../components/cart/CartComponent';
+import Link from 'next/link';
 
 const StyledCartPage = styled.div`
   padding: 0 10%;
@@ -44,20 +45,51 @@ const StyledCartPage = styled.div`
           }
         }
       }
+      .buttons {
+        margin-top: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 5%;
+
+        .btn {
+          display: flex;
+          justify-content: flex-end;
+
+          button {
+            background-color: #e05539;
+          }
+
+          button:hover {
+            background-color: #ff6b4d;
+          }
+        }
+        .link {
+          display: flex;
+          justify-content: flex-start;
+
+          button {
+            background-color: #19a695;
+          }
+
+          button:hover {
+            background-color: #00bfa9;
+          }
+        }
+      }
     }
   }
 `;
 
 const AddToCart = () => {
-  const data = useProductContext();
+  const { cart, clearCart } = useProductContext();
   const [loading, setIsLoading] = useState(true);
-  // console.log('data IN CART is ', data.cart);
+  console.log('data IN CART is ', cart);
   // const { id } = useProductContext();
   // console.log('cart data is ', id);
 
   useEffect(() => {
     setIsLoading(false);
-    // console.log('CART.LENGTH is ', data.cart.length);
+    // console.log('CART.LENGTH is ', cart.length);
   }, []);
 
   return (
@@ -76,9 +108,8 @@ const AddToCart = () => {
               </div>
             </div>
           </div>
-          {!loading && data.cart.length ? (
-            data.cart.map(item => {
-              console.log('item from cart is', item);
+          {!loading && cart.length ? (
+            cart.map(item => {
               return (
                 <div key={item.id}>
                   <CartComponent item={item} />
@@ -92,6 +123,16 @@ const AddToCart = () => {
           )}
           <div className="bordering">
             <hr />
+          </div>
+          <div className="buttons">
+            <div className="btn link">
+              <button>
+                <Link href="/">Continue Shopping</Link>
+              </button>
+            </div>
+            <div className="btn">
+              <button onClick={() => clearCart()}>Clear The Cart</button>
+            </div>
           </div>
           <div className="total">
             <p>Total amount: $xxxx</p>

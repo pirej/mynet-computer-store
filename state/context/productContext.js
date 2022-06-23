@@ -91,6 +91,10 @@ export const productReducer = (state, action) => {
       }
     }
     //---------------
+    case 'CLEAR_CART': {
+      return { ...state, cart: [] };
+    }
+    //---------------
     default:
       return state;
   }
@@ -99,6 +103,7 @@ export const productReducer = (state, action) => {
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
+  // additem to cart
   const addToCart = (
     id,
     title,
@@ -131,6 +136,12 @@ export const ProductProvider = ({ children }) => {
   const decreaseNum = item => {
     dispatch({ type: 'DECREASE_NUM', payload: { item } });
   };
+
+  // clear cart
+  const clearCart = id => {
+    dispatch({ type: 'CLEAR_CART', payload: id });
+  };
+
   //--------------------
 
   useEffect(() => {
@@ -139,7 +150,14 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ ...state, addToCart, removeItem, increaseNum, decreaseNum }}
+      value={{
+        ...state,
+        addToCart,
+        removeItem,
+        increaseNum,
+        decreaseNum,
+        clearCart,
+      }}
     >
       {children}
     </ProductContext.Provider>
