@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useProductContext } from '../../state/context/productContext';
 import CartComponent from '../../components/cart/CartComponent';
 import Link from 'next/link';
+import CartTotal from '../../components/cart/CartTotal';
 
 const StyledCartPage = styled.div`
   padding: 0 10%;
@@ -144,7 +145,7 @@ const AddToCart = () => {
                 </div>
               </div>
               <div className="total">
-                <p>Total amount: $xxxx</p>
+                <CartTotal />
               </div>
             </div>
           </div>
