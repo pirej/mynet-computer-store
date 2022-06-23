@@ -106,6 +106,30 @@ const AddToCart = () => {
     // console.log('CART.LENGTH is ', cart.length);
   }, []);
 
+  //--------------------------------------------
+  let shipping = 5;
+  const allItemsSubtotals = [];
+  !loading &&
+    cart.length &&
+    cart.map(item => {
+      // --------------------------------------------
+      const subtotal = item.discount
+        ? item.price * item.numItems -
+          item.price * item.numItems * (item.discount / 100)
+        : item.price * item.numItems;
+      allItemsSubtotals.push(subtotal);
+      // -------------------------------------------
+    });
+
+  const initialAmount = 0;
+  const allSubtotals = allItemsSubtotals.reduce(
+    (previousAmount, currentAmount) => previousAmount + currentAmount,
+    initialAmount
+  );
+  const total = Math.round((allSubtotals + Number.EPSILON) * 100) / 100;
+  total > 0 ? (shipping = 5) : (shipping = 0);
+  //--------------------------------------------
+
   return (
     <StyledCartPage>
       <div className="mainCartSection">
@@ -145,7 +169,7 @@ const AddToCart = () => {
                 </div>
               </div>
               <div className="total">
-                <CartTotal />
+                <CartTotal total={total} shipping={shipping} />
               </div>
             </div>
           </div>

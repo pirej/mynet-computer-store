@@ -46,7 +46,13 @@ const StyledTotal = styled.div`
   }
 `;
 
-const CartTotal = () => {
+function insertDecimal(num) {
+  return (num / 100).toFixed(2);
+}
+
+const CartTotal = ({ total, shipping }) => {
+  const finalPrice = insertDecimal(total * 100 + shipping * 100);
+
   return (
     <StyledTotal>
       <div className="totalWrapper">
@@ -54,19 +60,19 @@ const CartTotal = () => {
           <div className="spacing">
             <div className="subtotal">
               <p>Subtotal:</p>
-              <p>$12345</p>
+              <p>${total}</p>
             </div>
 
             <div className="shipping">
               <p>Shipping Fee:</p>
-              <p>$5</p>
+              <p>${shipping}</p>
             </div>
 
             <hr />
 
             <div className="total">
               <h3>Order Total:</h3>
-              <h3>$12350</h3>
+              <h3>${finalPrice}</h3>
             </div>
           </div>
         </div>
