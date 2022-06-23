@@ -46,6 +46,11 @@ export const productReducer = (state, action) => {
         return { ...state, cart: [...state.cart, action.payload] };
       }
     //---------------
+    case 'REMOVE_CART_ITEM': {
+      const tempCart = state.cart.filter(item => item.id !== action.payload);
+      return { ...state, cart: tempCart };
+    }
+    //---------------
     default:
       return state;
   }
@@ -69,12 +74,18 @@ export const ProductProvider = ({ children }) => {
     });
   };
 
+  // remove item from cart
+  const removeItem = id => {
+    dispatch({ type: 'REMOVE_CART_ITEM', payload: id });
+  };
+  //--------------------
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
   }, [state.cart]);
 
   return (
-    <ProductContext.Provider value={{ ...state, addToCart }}>
+    <ProductContext.Provider value={{ ...state, addToCart, removeItem }}>
       {children}
     </ProductContext.Provider>
   );
