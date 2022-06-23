@@ -36,8 +36,19 @@ const StyledCartItem = styled.div`
   }
 `;
 
+function insertDecimal(num) {
+  return (num / 100).toFixed(2);
+}
+
 const CartComponent = ({ item }) => {
   console.log('item is ', item);
+  //---------
+  const fullPrice = item.price * 100;
+  const price = item.discount
+    ? insertDecimal(fullPrice - fullPrice * (item.discount / 100))
+    : insertDecimal(fullPrice);
+
+  //---------
   return (
     <StyledCartItem>
       <div className="cardWrapper">
@@ -54,13 +65,17 @@ const CartComponent = ({ item }) => {
           </Link>
         </div>
         <div className="price">
-          <p>${item.price}</p>
+          <p>${price}</p>
         </div>
         <div className="quantity">
           <p>{item.numItems}</p>
         </div>
         <div className="subtotal">
-          <p>${item.price}</p>
+          $
+          {insertDecimal(
+            fullPrice * item.numItems -
+              fullPrice * item.numItems * (item.discount / 100)
+          )}
         </div>
       </div>
     </StyledCartItem>

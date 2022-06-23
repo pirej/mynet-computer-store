@@ -78,6 +78,7 @@ const AddToCart = () => {
           </div>
           {!loading && data.cart.length ? (
             data.cart.map(item => {
+              console.log('item from cart is', item);
               return (
                 <div key={item.id}>
                   <CartComponent item={item} />
