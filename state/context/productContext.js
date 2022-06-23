@@ -51,6 +51,46 @@ export const productReducer = (state, action) => {
       return { ...state, cart: tempCart };
     }
     //---------------
+    case 'INCREASE_NUM': {
+      const { item } = action.payload;
+      const findItem = state.cart.find(i => i.id === item.id);
+      // console.log('findItem is ', findItem);
+      if (findItem) {
+        const tempCart = state.cart.map(cartItem => {
+          if (cartItem.id === item.id) {
+            let toggleNumItems = findItem.numItems + 1;
+            if (toggleNumItems > cartItem.stock) {
+              toggleNumItems = cartItem.stock;
+            }
+            return { ...cartItem, numItems: toggleNumItems };
+          } else {
+            return cartItem;
+          }
+        });
+        return { ...state, cart: tempCart };
+      }
+    }
+    //---------------
+    case 'DECREASE_NUM': {
+      const { item } = action.payload;
+      const findItem = state.cart.find(i => i.id === item.id);
+      // console.log('findItem is ', findItem);
+      if (findItem) {
+        const tempCart = state.cart.map(cartItem => {
+          if (cartItem.id === item.id) {
+            let toggleNumItems = findItem.numItems - 1;
+            if (toggleNumItems <= 0) {
+              toggleNumItems = 0;
+            }
+            return { ...cartItem, numItems: toggleNumItems };
+          } else {
+            return cartItem;
+          }
+        });
+        return { ...state, cart: tempCart };
+      }
+    }
+    //---------------
     default:
       return state;
   }
@@ -78,6 +118,19 @@ export const ProductProvider = ({ children }) => {
   const removeItem = id => {
     dispatch({ type: 'REMOVE_CART_ITEM', payload: id });
   };
+
+  // increase num of items
+  const increaseNum = item => {
+    dispatch({
+      type: 'INCREASE_NUM',
+      payload: { item },
+    });
+  };
+
+  // decrease num of items
+  const decreaseNum = item => {
+    dispatch({ type: 'DECREASE_NUM', payload: { item } });
+  };
   //--------------------
 
   useEffect(() => {
@@ -85,7 +138,9 @@ export const ProductProvider = ({ children }) => {
   }, [state.cart]);
 
   return (
-    <ProductContext.Provider value={{ ...state, addToCart, removeItem }}>
+    <ProductContext.Provider
+      value={{ ...state, addToCart, removeItem, increaseNum, decreaseNum }}
+    >
       {children}
     </ProductContext.Provider>
   );

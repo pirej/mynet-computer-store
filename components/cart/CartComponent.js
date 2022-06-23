@@ -28,6 +28,30 @@ const StyledCartItem = styled.div`
 
     .quantity {
       flex: 1;
+      display: flex;
+      justify-content: center;
+
+      p {
+        padding: 0 0.5rem;
+      }
+
+      .toggleBTNs {
+        margin-right: 12%;
+        display: flex;
+
+        button {
+          background-color: white;
+          cursor: pointer;
+          border: none;
+        }
+
+        .decrease {
+          margin-top: 5px;
+        }
+        .increase {
+          margin-top: 5px;
+        }
+      }
     }
 
     .subtotal {
@@ -50,13 +74,21 @@ function insertDecimal(num) {
 const CartComponent = ({ item }) => {
   // console.log('item is ', item);
   //---------
-  const { removeItem } = useProductContext();
+  const { removeItem, decreaseNum, increaseNum } = useProductContext();
   //---------
   const fullPrice = item.price * 100;
   const price = item.discount
     ? insertDecimal(fullPrice - fullPrice * (item.discount / 100))
     : insertDecimal(fullPrice);
 
+  //---------
+  const decreaseHandler = () => {
+    if (item.numItems > 1) {
+      decreaseNum(item);
+    } else {
+      removeItem(item.id);
+    }
+  };
   //---------
   return (
     <StyledCartItem>
@@ -77,7 +109,15 @@ const CartComponent = ({ item }) => {
           <p>${price}</p>
         </div>
         <div className="quantity">
-          <p>{item.numItems}</p>
+          <div className="toggleBTNs">
+            <button className="decrease" onClick={() => decreaseHandler(item)}>
+              <Image src="/remove.svg" height={14} width={14} alt="decrease" />
+            </button>
+            <p>{item.numItems}</p>
+            <button className="increase" onClick={() => increaseNum(item)}>
+              <Image src="/add.svg" height={14} width={14} alt="increase" />
+            </button>
+          </div>
         </div>
         <div className="subtotal">
           $
