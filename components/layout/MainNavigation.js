@@ -94,9 +94,9 @@ const MainNavigation = () => {
           <ul>
             <li>
               {user ? (
-                <Link href="/api/auth/logout">{`hi ${user.nickname}`}</Link>
+                <Link href="/user/logout">{`hi ${user.nickname}`}</Link>
               ) : (
-                <Link href="/api/auth/login">login</Link>
+                <Link href="/user/login">login</Link>
               )}
             </li>
           </ul>
