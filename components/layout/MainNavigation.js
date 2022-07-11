@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useProductContext } from '../../state/context/productContext';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const Navigation = styled.div`
   background-color: #004695;
@@ -56,6 +57,7 @@ const Navigation = styled.div`
 
 const MainNavigation = () => {
   const [loading, setIsLoading] = useState(true);
+  const { user } = useUser();
 
   useEffect(() => {
     setIsLoading(false);
@@ -91,12 +93,11 @@ const MainNavigation = () => {
         <nav>
           <ul>
             <li>
-              <Link href="/api/auth/login">login</Link>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <Link href="/api/auth/logout">logout</Link>
+              {user ? (
+                <Link href="/api/auth/logout">{`hi ${user.nickname}`}</Link>
+              ) : (
+                <Link href="/api/auth/login">login</Link>
+              )}
             </li>
           </ul>
           <ul>
