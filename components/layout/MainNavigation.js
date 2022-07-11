@@ -91,7 +91,12 @@ const MainNavigation = () => {
         <nav>
           <ul>
             <li>
-              <Link href="#">login</Link>
+              <Link href="/api/auth/login">login</Link>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <Link href="/api/auth/logout">logout</Link>
             </li>
           </ul>
           <ul>
