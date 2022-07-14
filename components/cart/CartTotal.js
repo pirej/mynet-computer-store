@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const StyledTotal = styled.div`
@@ -78,7 +79,9 @@ const CartTotal = ({ total, shipping }) => {
         </div>
         <div className="checkoutBTN">
           <div className="btn proceed">
-            <button>Login to proceed</button>
+            <Link href={'/checkout'}>
+              <button>Proceed to checkout</button>
+            </Link>
           </div>
         </div>
       </div>
