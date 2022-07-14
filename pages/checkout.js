@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import PaypalCheckoutButton from '../components/Cart/PaypalCheckoutButton';
 import { useProductContext } from '../state/context/productContext';
 import styled from 'styled-components';
+import { useUser } from '@auth0/nextjs-auth0';
+import { useRouter } from 'next/router';
 
 const StyledChekout = styled.div`
   display: flex;
@@ -51,10 +53,20 @@ const Checkout = () => {
   const { cart } = useProductContext();
   const [loading, setIsLoading] = useState(true);
   const [amount, setAmount] = useState();
+  const { user } = useUser();
+  const router = useRouter();
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  let activeUser;
+  if (user) {
+    activeUser = user.nickname;
+    if (!user.email_verified) {
+      router.push('/');
+    }
+  }
 
   let shipping = 5;
   const allItemsSubtotals = [];
@@ -85,7 +97,7 @@ const Checkout = () => {
   return (
     <StyledChekout>
       <div className="blueBar">
-        <h3>Hello user..</h3>
+        <h3>Hello {activeUser}</h3>
       </div>
       <h3>Your cart total is ${amount}</h3>
       <div className="paypal-button-container">

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const StyledTotal = styled.div`
   margin: 1.5rem 0 3rem 0;
@@ -53,6 +54,8 @@ function insertDecimal(num) {
 
 const CartTotal = ({ total, shipping }) => {
   const finalPrice = insertDecimal(total * 100 + shipping * 100);
+  const { user } = useUser();
+  console.log('user is', user);
 
   return (
     <StyledTotal>
@@ -79,9 +82,15 @@ const CartTotal = ({ total, shipping }) => {
         </div>
         <div className="checkoutBTN">
           <div className="btn proceed">
-            <Link href={'/checkout'}>
-              <button>Proceed to checkout</button>
-            </Link>
+            {user && !user.email_verified ? (
+              <button>Verify your mail to proceed</button>
+            ) : user && user.email_verified ? (
+              <Link href={'/checkout'} passHref>
+                <button>Proceed to checkout</button>
+              </Link>
+            ) : (
+              <button>Login to proceed</button>
+            )}
           </div>
         </div>
       </div>
