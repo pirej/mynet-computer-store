@@ -60,6 +60,13 @@ const Checkout = () => {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (cart.length === 0) {
+      router.push('/checkout');
+    }
+    // eslint-disable-next-line
+  }, [cart]);
+
   let activeUser;
   if (user) {
     activeUser = user.nickname;
@@ -99,7 +106,12 @@ const Checkout = () => {
       <div className="blueBar">
         <h3>Hello {activeUser}</h3>
       </div>
-      <h3>Your cart total is ${amount}</h3>
+      {!loading && cart.length > 0 ? (
+        <h3>Your cart total is ${amount}</h3>
+      ) : (
+        <h3>Your cart is empty</h3>
+      )}
+
       <div className="paypal-button-container">
         {amount && amount > 5 && <PaypalCheckoutButton cartAmount={amount} />}
       </div>
