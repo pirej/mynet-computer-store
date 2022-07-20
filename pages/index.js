@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MenuList from '../components/menulist/MenuList';
 import ProductCard from '../components/ProductCard';
 import Link from 'next/link';
+import FetchUsers from '../utils/FetchUsers';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   headers: {
@@ -30,6 +31,7 @@ const HomeStyle = styled.div`
 
 const Home = ({ data }) => {
   // console.log('data is ', data);
+  FetchUsers();
   const topBarTitle = 'New & Promo Products';
   const productsArray = Object.values(data);
 
