@@ -113,7 +113,9 @@ const Checkout = () => {
       )}
 
       <div className="paypal-button-container">
-        {amount && amount > 5 && <PaypalCheckoutButton cartAmount={amount} />}
+        {amount && amount > 5 && (
+          <PaypalCheckoutButton cart={cart} cartAmount={amount} />
+        )}
       </div>
       <div className="testInfo">
         <h4>Test Card info:</h4>
