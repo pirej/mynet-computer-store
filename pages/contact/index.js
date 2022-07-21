@@ -9,6 +9,13 @@ const ContactStyle = styled.div`
   display: flex;
   padding: 0 10%;
   gap: 5%;
+  @media (max-width: 1440px) {
+    padding: 0 5%;
+  }
+  @media (max-width: 768px) {
+    gap: 0;
+  }
+
   .mainContactSection {
     width: 100%;
     .contactSection {
@@ -16,6 +23,15 @@ const ContactStyle = styled.div`
       padding: 0 10%;
       display: flex;
       flex-direction: column;
+      @media (max-width: 1600px) {
+        padding: 0 5%;
+      }
+      @media (max-width: 1440px) {
+        padding: 0 3%;
+      }
+      @media (max-width: 1280px) {
+        padding: 0;
+      }
 
       .sectionTitle {
         text-align: center;
@@ -55,6 +71,9 @@ const ContactStyle = styled.div`
 
     .mapSection {
       padding: 0 5%;
+      @media (max-width: 1024px) {
+        padding: 0 1%;
+      }
       .map {
         overflow: hidden;
         padding-bottom: 60%;
@@ -76,6 +95,13 @@ const ContactStyle = styled.div`
       padding: 0 4%;
       gap: 9%;
       margin-bottom: 2rem;
+
+      @media (max-width: 1024px) {
+        padding: 0;
+      }
+      @media (max-width: 590px) {
+        flex-direction: column;
+      }
 
       .formWrap {
         flex: 8;

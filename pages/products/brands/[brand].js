@@ -17,6 +17,12 @@ const AllProductsStyle = styled.div`
   display: flex;
   gap: 5%;
   padding: 0 10%;
+  @media (max-width: 1440px) {
+    padding: 0 5%;
+  }
+  @media (max-width: 768px) {
+    gap: 0;
+  }
 
   .mainProductSection {
     width: 100%;

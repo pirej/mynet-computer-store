@@ -8,6 +8,10 @@ import CartTotal from '../../components/cart/CartTotal';
 
 const StyledCartPage = styled.div`
   padding: 0 10%;
+  @media (max-width: 1440px) {
+    padding: 0 5%;
+  }
+
   .mainCartSection {
     width: 100%;
     text-align: center;
@@ -29,6 +33,18 @@ const StyledCartPage = styled.div`
     }
     .cartInfoSection {
       margin: 0 20%;
+      @media (max-width: 1280px) {
+        margin: 0 15%;
+      }
+      @media (max-width: 1024px) {
+        margin: 0 10%;
+      }
+      @media (max-width: 768px) {
+        margin: 0 5%;
+      }
+      @media (max-width: 590px) {
+        margin: 0;
+      }
       .cartInfo {
         .infoSection {
           border-radius: 6px 6px 0 0;

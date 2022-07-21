@@ -18,6 +18,12 @@ const ProductStyle = styled.div`
   display: flex;
   gap: 5%;
   padding: 0 10%;
+  @media (max-width: 1440px) {
+    padding: 0 5%;
+  }
+  @media (max-width: 768px) {
+    gap: 0;
+  }
 
   .productSection {
     width: 100%;
@@ -129,6 +135,18 @@ const ProductStyle = styled.div`
           }
         }
       }
+    }
+  }
+  @media (max-width: 480px) {
+    .productInfo {
+      display: flex;
+      flex-flow: column;
+    }
+    .productPreview {
+      order: 1;
+    }
+    .productDetails {
+      order: 2;
     }
   }
 `;

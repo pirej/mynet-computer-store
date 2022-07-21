@@ -13,6 +13,14 @@ const Navigation = styled.div`
     padding: 0 10%;
     height: 7rem;
     align-items: center;
+    @media (max-width: 1440px) {
+      padding: 0 5%;
+    }
+    @media (max-width: 590px) {
+      flex-direction: column;
+      height: 10rem;
+      padding-top: 1rem;
+    }
   }
   nav {
     display: flex;
