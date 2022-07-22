@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useUser } from '@auth0/nextjs-auth0';
+import Head from 'next/head';
 
 const StyledConfirmation = styled.div`
   display: flex;
@@ -66,34 +67,40 @@ const Login = () => {
   const { user } = useUser();
   if (!user) {
     return (
-      <StyledConfirmation>
-        <div className="formWrapper">
-          <div className="topbarSection">
-            <div className="columnTitle">
-              <h3>Please confirm</h3>
+      <>
+        <Head>
+          <title>Login Page</title>
+          <meta name="description" content="login page" />
+        </Head>
+        <StyledConfirmation>
+          <div className="formWrapper">
+            <div className="topbarSection">
+              <div className="columnTitle">
+                <h3>Please confirm</h3>
+              </div>
+            </div>
+            <div className="backColor">
+              <div className="theMessage">
+                <h3>By siging up you agree to receive</h3>
+                <h3>montly newsletters from us</h3>
+              </div>
+              <hr />
+            </div>
+            <div className="buttons">
+              <div className="btn">
+                <button>
+                  <Link href="/api/auth/login">Yes, login</Link>
+                </button>
+              </div>
+              <div className="btn no">
+                <button>
+                  <Link href="/">No, go back</Link>
+                </button>
+              </div>
             </div>
           </div>
-          <div className="backColor">
-            <div className="theMessage">
-              <h3>By siging up you agree to receive</h3>
-              <h3>montly newsletters from us</h3>
-            </div>
-            <hr />
-          </div>
-          <div className="buttons">
-            <div className="btn">
-              <button>
-                <Link href="/api/auth/login">Yes, login</Link>
-              </button>
-            </div>
-            <div className="btn no">
-              <button>
-                <Link href="/">No, go back</Link>
-              </button>
-            </div>
-          </div>
-        </div>
-      </StyledConfirmation>
+        </StyledConfirmation>
+      </>
     );
   }
 };

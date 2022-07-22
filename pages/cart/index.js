@@ -5,6 +5,7 @@ import { useProductContext } from '../../state/context/productContext';
 import CartComponent from '../../components/cart/CartComponent';
 import Link from 'next/link';
 import CartTotal from '../../components/cart/CartTotal';
+import Head from 'next/head';
 
 const StyledCartPage = styled.div`
   padding: 0 10%;
@@ -147,60 +148,66 @@ const AddToCart = () => {
   //--------------------------------------------
 
   return (
-    <StyledCartPage>
-      <div className="mainCartSection">
-        <TopBar title="Cart Page" />
-        {!loading && cart.length ? (
-          <div className="ifCart">
-            <h2>Your Cart Items:</h2>
-            <div className="cartInfoSection">
-              <div className="cartInfo">
-                <div className="infoSection">
-                  <div className="columnTitle">
-                    <h4>Item</h4>
-                    <h4>Price</h4>
-                    <h4>Quantity</h4>
-                    <h4>Subtotal</h4>
+    <>
+      <Head>
+        <title>Cart Page</title>
+        <meta name="description" content="Cart products details" />
+      </Head>
+      <StyledCartPage>
+        <div className="mainCartSection">
+          <TopBar title="Cart Page" />
+          {!loading && cart.length ? (
+            <div className="ifCart">
+              <h2>Your Cart Items:</h2>
+              <div className="cartInfoSection">
+                <div className="cartInfo">
+                  <div className="infoSection">
+                    <div className="columnTitle">
+                      <h4>Item</h4>
+                      <h4>Price</h4>
+                      <h4>Quantity</h4>
+                      <h4>Subtotal</h4>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {cart.map(item => {
-                return (
-                  <div key={item.id}>
-                    <CartComponent item={item} />
+                {cart.map(item => {
+                  return (
+                    <div key={item.id}>
+                      <CartComponent item={item} />
+                    </div>
+                  );
+                })}
+                <div className="bordering">
+                  <hr />
+                </div>
+                <div className="buttons">
+                  <div className="btn link">
+                    <button>
+                      <Link href="/">Continue Shopping</Link>
+                    </button>
                   </div>
-                );
-              })}
-              <div className="bordering">
-                <hr />
-              </div>
-              <div className="buttons">
-                <div className="btn link">
-                  <button>
-                    <Link href="/">Continue Shopping</Link>
-                  </button>
+                  <div className="btn">
+                    <button onClick={() => clearCart()}>Clear The Cart</button>
+                  </div>
                 </div>
-                <div className="btn">
-                  <button onClick={() => clearCart()}>Clear The Cart</button>
+                <div className="total">
+                  <CartTotal total={total} shipping={shipping} />
                 </div>
               </div>
-              <div className="total">
-                <CartTotal total={total} shipping={shipping} />
+            </div>
+          ) : (
+            <div className="emptyCart">
+              <h2>Your Cart is Empty</h2>
+              <div className="btn">
+                <button>
+                  <Link href="/">Go Shopping</Link>
+                </button>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="emptyCart">
-            <h2>Your Cart is Empty</h2>
-            <div className="btn">
-              <button>
-                <Link href="/">Go Shopping</Link>
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    </StyledCartPage>
+          )}
+        </div>
+      </StyledCartPage>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import MenuList from '../../../components/menulist/MenuList';
 import ProductCard from '../../../components/ProductCard';
 import TopBar from '../../../components/productSection/TopBar';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -48,25 +49,30 @@ const Title = ({ data }) => {
     const productsArray = Object.values(data)[0];
     // console.log('productsArray is', productsArray);
     return (
-      <AllProductsStyle>
-        <div className="menu">
-          <MenuList />
-        </div>
-        <div className="mainProductSection">
-          <TopBar title={topBarTitle} />
-          <div className="productCarsLayout">
-            {productsArray.map(item => {
-              return (
-                <Link href={`/products/${item.slug}`} key={item.id}>
-                  <a>
-                    <ProductCard item={item} />
-                  </a>
-                </Link>
-              );
-            })}
+      <>
+        <Head>
+          <title>{topBarTitle}</title>
+        </Head>
+        <AllProductsStyle>
+          <div className="menu">
+            <MenuList />
           </div>
-        </div>
-      </AllProductsStyle>
+          <div className="mainProductSection">
+            <TopBar title={topBarTitle} />
+            <div className="productCarsLayout">
+              {productsArray.map(item => {
+                return (
+                  <Link href={`/products/${item.slug}`} key={item.id}>
+                    <a>
+                      <ProductCard item={item} />
+                    </a>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </AllProductsStyle>
+      </>
     );
   }
 };

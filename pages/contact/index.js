@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import MenuList from '../../components/menulist/MenuList';
 import TopBar from '../../components/productSection/TopBar';
+import Head from 'next/head';
 
 const ContactStyle = styled.div`
   /* background-color: lightblue; */
@@ -211,90 +212,96 @@ const ContactPage = () => {
   };
   //---------------------------
   return (
-    <ContactStyle>
-      <MenuList />
-      <div className="mainContactSection">
-        <TopBar title={topBarTitle} />
+    <>
+      <Head>
+        <title>Contact Page</title>
+        <meta name="description" content="contact form" />
+      </Head>
+      <ContactStyle>
+        <MenuList />
+        <div className="mainContactSection">
+          <TopBar title={topBarTitle} />
 
-        <div className="contactSection">
-          <div className="sectionTitle">
-            <h3>Contact Us</h3>
-          </div>
-          <div className="formAndInfo">
-            <div className="formWrap">
-              <form ref={form} onSubmit={sendEmail} className="theForm">
-                <p>
-                  <label>Enter your Name</label>
-                  <input type="text" name="name" minLength="3" required />
-                </p>
-                <p>
-                  <label>Email address</label>
-                  <input type="email" name="email" minLength="7" required />
-                </p>
-                <p>
-                  <label>Message Subject</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    minLength="2"
-                    maxLength="35"
-                    required
-                  />
-                </p>
-                <p>
-                  <label>Enter your Message</label>
-                  <textarea
-                    name="message"
-                    minLength="5"
-                    maxLength="200"
-                    required
-                    rows="7"
-                    cols="40"
-                  />
-                </p>
-                <div className="btn">
-                  <button>Submit</button>
-                  {sent && <span className="sentSpan">Message sent!</span>}
-                </div>
-              </form>
+          <div className="contactSection">
+            <div className="sectionTitle">
+              <h3>Contact Us</h3>
             </div>
-            <div className="infoSection">
-              <div className="infoCard">
-                <h4 className="cardHeadline">Contact Info</h4>
-                <hr />
-                <h4>
-                  <span>Name: </span>John Doe
-                </h4>
-                <h4>
-                  <span>Telephone: </span>123 456 789
-                </h4>
-                <h4>
-                  <span>Email: </span>john@randomplace.com
-                </h4>
-                <h4>
-                  <span>Address: </span>Dark Street, 148
-                </h4>
-                <h4>
-                  <span>Location: </span>Skopje, Macedonia
-                </h4>
+            <div className="formAndInfo">
+              <div className="formWrap">
+                <form ref={form} onSubmit={sendEmail} className="theForm">
+                  <p>
+                    <label>Enter your Name</label>
+                    <input type="text" name="name" minLength="3" required />
+                  </p>
+                  <p>
+                    <label>Email address</label>
+                    <input type="email" name="email" minLength="7" required />
+                  </p>
+                  <p>
+                    <label>Message Subject</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      minLength="2"
+                      maxLength="35"
+                      required
+                    />
+                  </p>
+                  <p>
+                    <label>Enter your Message</label>
+                    <textarea
+                      name="message"
+                      minLength="5"
+                      maxLength="200"
+                      required
+                      rows="7"
+                      cols="40"
+                    />
+                  </p>
+                  <div className="btn">
+                    <button>Submit</button>
+                    {sent && <span className="sentSpan">Message sent!</span>}
+                  </div>
+                </form>
+              </div>
+              <div className="infoSection">
+                <div className="infoCard">
+                  <h4 className="cardHeadline">Contact Info</h4>
+                  <hr />
+                  <h4>
+                    <span>Name: </span>John Doe
+                  </h4>
+                  <h4>
+                    <span>Telephone: </span>123 456 789
+                  </h4>
+                  <h4>
+                    <span>Email: </span>john@randomplace.com
+                  </h4>
+                  <h4>
+                    <span>Address: </span>Dark Street, 148
+                  </h4>
+                  <h4>
+                    <span>Location: </span>Skopje, Macedonia
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div className="mapSection">
+              <div className="map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d377.01798506574033!2d21.43149099191016!3d41.99582652116158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415b198820fbf%3A0x67dd8bb78356b990!2sAlexander%20the%20Great%20Statue!5e1!3m2!1sen!2smk!4v1655167088487!5m2!1sen!2smk"
+                  width="600"
+                  height="450"
+                  frameBorder="0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
-          <div className="mapSection">
-            <div className="map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d377.01798506574033!2d21.43149099191016!3d41.99582652116158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415b198820fbf%3A0x67dd8bb78356b990!2sAlexander%20the%20Great%20Statue!5e1!3m2!1sen!2smk!4v1655167088487!5m2!1sen!2smk"
-                width="600"
-                height="450"
-                frameBorder="0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
         </div>
-      </div>
-    </ContactStyle>
+      </ContactStyle>
+    </>
   );
 };
 

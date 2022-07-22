@@ -5,6 +5,7 @@ import MenuList from '../components/menulist/MenuList';
 import ProductCard from '../components/ProductCard';
 import Link from 'next/link';
 import FetchUsers from '../utils/FetchUsers';
+import Head from 'next/head';
 
 const graphcms = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
   headers: {
@@ -53,25 +54,31 @@ const Home = ({ data }) => {
   // console.log('myItems is ', myItems);
 
   return (
-    <HomeStyle>
-      <div className="menu">
-        <MenuList />
-      </div>
-      <div className="mainProductSection">
-        <TopBar title={topBarTitle} />
-        <div className="productCardsLayout">
-          {myItems.map(item => {
-            return (
-              <Link href={`/products/${item.slug}`} key={item.id}>
-                <a>
-                  <ProductCard item={item} />
-                </a>
-              </Link>
-            );
-          })}
+    <>
+      <Head>
+        <title>Mynet computer store</title>
+        <meta name="description" content="mynet best computer store" />
+      </Head>
+      <HomeStyle>
+        <div className="menu">
+          <MenuList />
         </div>
-      </div>
-    </HomeStyle>
+        <div className="mainProductSection">
+          <TopBar title={topBarTitle} />
+          <div className="productCardsLayout">
+            {myItems.map(item => {
+              return (
+                <Link href={`/products/${item.slug}`} key={item.id}>
+                  <a>
+                    <ProductCard item={item} />
+                  </a>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </HomeStyle>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -61,33 +62,39 @@ const StyledConfirmation = styled.div`
 
 const Logout = () => {
   return (
-    <StyledConfirmation>
-      <div className="formWrapper">
-        <div className="topbarSection">
-          <div className="columnTitle">
-            <h3>Please confirm</h3>
+    <>
+      <Head>
+        <title>Logout Page</title>
+        <meta name="description" content="logout page" />
+      </Head>
+      <StyledConfirmation>
+        <div className="formWrapper">
+          <div className="topbarSection">
+            <div className="columnTitle">
+              <h3>Please confirm</h3>
+            </div>
+          </div>
+          <div className="backColor">
+            <div className="theMessage">
+              <h3>Are you sure you want to logout?</h3>
+            </div>
+            <hr />
+          </div>
+          <div className="buttons">
+            <div className="btn">
+              <button>
+                <Link href="/">No, go back</Link>
+              </button>
+            </div>
+            <div className="btn yes">
+              <button>
+                <Link href="/api/auth/logout">Yes, logout</Link>
+              </button>
+            </div>
           </div>
         </div>
-        <div className="backColor">
-          <div className="theMessage">
-            <h3>Are you sure you want to logout?</h3>
-          </div>
-          <hr />
-        </div>
-        <div className="buttons">
-          <div className="btn">
-            <button>
-              <Link href="/">No, go back</Link>
-            </button>
-          </div>
-          <div className="btn yes">
-            <button>
-              <Link href="/api/auth/logout">Yes, logout</Link>
-            </button>
-          </div>
-        </div>
-      </div>
-    </StyledConfirmation>
+      </StyledConfirmation>
+    </>
   );
 };
 
