@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import ListItemFake from './ListItemFake';
 import ListItem from './ListItem';
+import Image from 'next/image';
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT, {
   headers: {
@@ -48,6 +49,45 @@ const query = gql`
 
 const StyledMenu = styled.div`
   /* background-color: lightblue; */
+
+  .sidebar {
+    .menuIcon {
+      display: none;
+      margin-top: 1.59rem;
+      margin-left: 0.25rem;
+      @media (max-width: 768px) {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+      }
+      @media (max-width: 480px) {
+        margin-top: 1.55rem;
+        margin-left: 0.2rem;
+      }
+      @media (max-width: 360px) {
+        margin-top: 1.5rem;
+        margin-left: 0.2rem;
+      }
+    }
+  }
+  .menuOnLeft {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hideMenu {
+      display: none;
+    }
+    .showMenu {
+      display: block;
+      position: absolute;
+      z-index: 300;
+      margin-top: 2.5rem;
+    }
+  }
+
   .menuSection {
     min-width: 14.5rem;
     max-width: 14.5rem;
@@ -101,6 +141,7 @@ const StyledMenu = styled.div`
 
 const MenuList = () => {
   const [data, setData] = useState([]);
+  const [menuHidden, setMenuHidden] = useState(true);
 
   useEffect(() => {
     async function getMenuItems() {
@@ -114,45 +155,69 @@ const MenuList = () => {
   const productsArr = Object.values(data);
   const productsListArr = Object.keys(data);
   //-----------------------------
+  function handleMenuOnClick() {
+    // console.log('menu icon clicked');
+    setMenuHidden(!menuHidden);
+  }
+  //--------
+  // console.log('menuHidden is -', menuHidden);
+  const openMenuIcon = '/menu.svg';
+  const closedMenuIcon = '/menu-close.svg';
+  //-----------------------------
 
   return (
     <StyledMenu>
-      <div className="menuOnLeft">
-        <div className="menuSection">
-          <div className="menuTitleSection">
-            <div className="menuTitle">
-              <div className="titleSection">
-                <h3>Products</h3>
+      <div className="wrapper">
+        <div className="sidebar">
+          <div onClick={handleMenuOnClick} className="menuIcon">
+            <Image
+              // src="/menuRed.svg"
+              src={menuHidden ? openMenuIcon : closedMenuIcon}
+              height={20}
+              width={35}
+              alt="menu"
+              priority="true"
+            />
+          </div>
+        </div>
+        {/* <div className="menuOnLeft"> */}
+        <div className={`menuOnLeft ${menuHidden ? 'hideMenu' : 'showMenu'} `}>
+          <div className="menuSection">
+            <div className="menuTitleSection">
+              <div className="menuTitle">
+                <div className="titleSection">
+                  <h3>Products</h3>
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <Link href="/">
-              <p>New & Promo Products</p>
-            </Link>
-          </div>
-          {productsListArr.map((item, idx) => {
-            const spaced = item.replace('_', ' ');
-            const listItemTitle =
-              spaced.charAt(0).toUpperCase() + spaced.slice(1);
-            const productBrands = productsArr[idx].map((item, idx) => {
-              return item.brand;
-            });
+            <div>
+              <Link href="/">
+                <p>New & Promo Products</p>
+              </Link>
+            </div>
+            {productsListArr.map((item, idx) => {
+              const spaced = item.replace('_', ' ');
+              const listItemTitle =
+                spaced.charAt(0).toUpperCase() + spaced.slice(1);
+              const productBrands = productsArr[idx].map((item, idx) => {
+                return item.brand;
+              });
 
-            const uniqueBrands = [...new Set(productBrands)];
-            return (
-              <ListItem
-                key={idx}
-                // itemDetails={productsArr[idx]}
-                itemTitle={listItemTitle}
-                uniqueBrands={uniqueBrands}
-                rawTitle={item}
-              />
-            );
-          })}
-          <ListItemFake />
-          <div className="bottomBar">
-            <h3>Products ↑</h3>
+              const uniqueBrands = [...new Set(productBrands)];
+              return (
+                <ListItem
+                  key={idx}
+                  // itemDetails={productsArr[idx]}
+                  itemTitle={listItemTitle}
+                  uniqueBrands={uniqueBrands}
+                  rawTitle={item}
+                />
+              );
+            })}
+            <ListItemFake />
+            <div className="bottomBar">
+              <h3>Products ↑</h3>
+            </div>
           </div>
         </div>
       </div>
