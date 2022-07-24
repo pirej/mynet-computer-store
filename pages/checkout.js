@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import PaypalCheckoutButton from '../components/Cart/PaypalCheckoutButton';
+import PaypalCheckoutButton from '../components/cart/PaypalCheckoutButton';
 import { useProductContext } from '../state/context/productContext';
 import styled from 'styled-components';
 import { useUser } from '@auth0/nextjs-auth0';
