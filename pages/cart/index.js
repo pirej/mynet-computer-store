@@ -114,7 +114,7 @@ const StyledCartPage = styled.div`
 const AddToCart = () => {
   const { cart, clearCart } = useProductContext();
   const [loading, setIsLoading] = useState(true);
-  console.log('data IN CART is ', cart);
+  // console.log('data IN CART is ', cart);
   // const { id } = useProductContext();
   // console.log('cart data is ', id);
 

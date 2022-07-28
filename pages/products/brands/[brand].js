@@ -86,7 +86,7 @@ export async function getServerSideProps(context) {
   const theBrand = separated[0];
   const theProducts = separated[1];
 
-  console.log('separated', separated);
+  // console.log('separated', separated);
 
   const query = gql`
     query ($theBrand: String!){

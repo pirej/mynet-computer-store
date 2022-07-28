@@ -55,7 +55,7 @@ function insertDecimal(num) {
 const CartTotal = ({ total, shipping }) => {
   const finalPrice = insertDecimal(total * 100 + shipping * 100);
   const { user } = useUser();
-  console.log('user is', user);
+  // console.log('user is', user);
 
   return (
     <StyledTotal>
