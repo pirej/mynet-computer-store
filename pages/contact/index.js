@@ -72,6 +72,7 @@ const ContactStyle = styled.div`
 
     .mapSection {
       padding: 0 5%;
+      margin-bottom: 3rem;
       @media (max-width: 1024px) {
         padding: 0 1%;
       }
