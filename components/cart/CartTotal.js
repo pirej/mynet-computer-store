@@ -85,7 +85,7 @@ const CartTotal = ({ total, shipping }) => {
             {user && !user.email_verified ? (
               <button>Verify your mail to proceed</button>
             ) : user && user.email_verified ? (
-              <Link href={'/checkout'} passHref>
+              <Link href={'/checkout'} passHref legacyBehavior>
                 <button>Proceed to checkout</button>
               </Link>
             ) : (

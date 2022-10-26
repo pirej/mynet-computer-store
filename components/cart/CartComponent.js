@@ -106,7 +106,7 @@ const CartComponent = ({ item }) => {
     <StyledCartItem>
       <div className="cardWrapper">
         <div className="imgAndTitle">
-          <Link href={`/cart/${item.id}`}>
+          <Link href={`/cart/${item.id}`} legacyBehavior>
             <div className="imgWrapper">
               <Image
                 src={item.mainImgSrc}

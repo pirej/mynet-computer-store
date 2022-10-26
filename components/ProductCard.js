@@ -149,7 +149,7 @@ const ProductCard = ({ item }) => {
         )}
       </div>
       <div className={`btn ${stock < 1 && 'outOfStock'}`}>
-        <Link href={`${stock > 0 ? '/cart' : '#'}`} passHref>
+        <Link href={`${stock > 0 ? '/cart' : '#'}`} passHref legacyBehavior>
           <button
             onClick={() =>
               stock > 0

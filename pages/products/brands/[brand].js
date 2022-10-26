@@ -47,32 +47,30 @@ const BrandOfProducts = ({ data }) => {
   if (data) {
     const productsArray = Object.values(data)[0];
     // console.log('productsArray is', productsArray);
-    return (
-      <>
-        <Head>
-          <title>{currentBrand}</title>
-        </Head>
-        <AllProductsStyle>
-          <div className="menu">
-            <MenuList />
+    return <>
+      <Head>
+        <title>{currentBrand}</title>
+      </Head>
+      <AllProductsStyle>
+        <div className="menu">
+          <MenuList />
+        </div>
+        <div className="mainProductSection">
+          <TopBar title={currentBrand} />
+          <div className="productCarsLayout">
+            {productsArray.map(item => {
+              return (
+                (<Link href={`/products/${item.slug}`} key={item.id}>
+
+                  <ProductCard item={item} />
+
+                </Link>)
+              );
+            })}
           </div>
-          <div className="mainProductSection">
-            <TopBar title={currentBrand} />
-            <div className="productCarsLayout">
-              {productsArray.map(item => {
-                return (
-                  <Link href={`/products/${item.slug}`} key={item.id}>
-                    <a>
-                      <ProductCard item={item} />
-                    </a>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </AllProductsStyle>
-      </>
-    );
+        </div>
+      </AllProductsStyle>
+    </>;
   }
 };
 

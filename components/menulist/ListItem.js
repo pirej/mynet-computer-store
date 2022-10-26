@@ -40,7 +40,7 @@ const ListItem = props => {
     >
       <div className="menuSubmenu">
         <div className="noBrandItem">
-          <Link href={`/products/all/${rawTitle}`}>
+          <Link href={`/products/all/${rawTitle}`} legacyBehavior>
             <p>{itemTitle}</p>
           </Link>
         </div>
@@ -49,7 +49,7 @@ const ListItem = props => {
             brands.map((brand, idx) => {
               return (
                 <div key={idx}>
-                  <Link href={`/products/brands/${brand}-${rawTitle}`}>
+                  <Link href={`/products/brands/${brand}-${rawTitle}`} legacyBehavior>
                     <p>{brand}</p>
                   </Link>
                 </div>

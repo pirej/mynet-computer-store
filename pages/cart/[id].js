@@ -190,148 +190,146 @@ const ProductByID = ({ product }) => {
 
   // console.log('item is', item);
 
-  return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={`${title} details`} />
-      </Head>
-      <ProductStyle>
-        <div className="menuSection">
-          <MenuList />
+  return <>
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={`${title} details`} />
+    </Head>
+    <ProductStyle>
+      <div className="menuSection">
+        <MenuList />
+      </div>
+      <div className="productSection">
+        <div className="productTitle">
+          <TopBar title={title} />
         </div>
-        <div className="productSection">
-          <div className="productTitle">
-            <TopBar title={title} />
-          </div>
-          <div className="productInfo">
-            <div className="productDetails">
-              <div className="product">
-                <div className="subtitle">
-                  <h3>{subtitle}</h3>
+        <div className="productInfo">
+          <div className="productDetails">
+            <div className="product">
+              <div className="subtitle">
+                <h3>{subtitle}</h3>
+              </div>
+              <div className="allDescription">
+                <div className="productDescriptionTitle">
+                  <p>Product description:</p>
                 </div>
-                <div className="allDescription">
-                  <div className="productDescriptionTitle">
-                    <p>Product description:</p>
-                  </div>
-                  <div className="productDescription">
-                    <RichText
-                      content={mainContent}
-                      renderers={{
-                        h1: ({ children }) => (
-                          <h1 className="text-normal">{children}</h1>
-                        ),
-                        h2: ({ children }) => (
-                          <h2 className="text-normal">{children}</h2>
-                        ),
-                        h3: ({ children }) => (
-                          <h3 className="text-normal">{children}</h3>
-                        ),
-                        h4: ({ children }) => (
-                          <h4 className="text-normal">{children}</h4>
-                        ),
-                        p: ({ children }) => (
-                          <p className="text-normal">{children}</p>
-                        ),
-                        bold: ({ children }) => (
-                          <strong className="text-bold">{children}</strong>
-                        ),
-                        italic: ({ children }) => (
-                          <span className="text-italic">{children}</span>
-                        ),
-                      }}
-                    />
-                    <a className="productInfoLink" href={manufacturer}>
-                      More product details:
-                    </a>
-                  </div>
+                <div className="productDescription">
+                  <RichText
+                    content={mainContent}
+                    renderers={{
+                      h1: ({ children }) => (
+                        <h1 className="text-normal">{children}</h1>
+                      ),
+                      h2: ({ children }) => (
+                        <h2 className="text-normal">{children}</h2>
+                      ),
+                      h3: ({ children }) => (
+                        <h3 className="text-normal">{children}</h3>
+                      ),
+                      h4: ({ children }) => (
+                        <h4 className="text-normal">{children}</h4>
+                      ),
+                      p: ({ children }) => (
+                        <p className="text-normal">{children}</p>
+                      ),
+                      bold: ({ children }) => (
+                        <strong className="text-bold">{children}</strong>
+                      ),
+                      italic: ({ children }) => (
+                        <span className="text-italic">{children}</span>
+                      ),
+                    }}
+                  />
+                  <a className="productInfoLink" href={manufacturer}>
+                    More product details:
+                  </a>
                 </div>
               </div>
             </div>
-            <div className="productPreview">
-              <div className="previewWrapper">
-                <div className="ImageWrapper">
-                  <div className="promoBanner">
-                    <Image
-                      src={imgsrc}
-                      height={90}
-                      width={145}
-                      alt="promo-new-product"
-                    />
-                  </div>
+          </div>
+          <div className="productPreview">
+            <div className="previewWrapper">
+              <div className="ImageWrapper">
+                <div className="promoBanner">
                   <Image
-                    src={mainImgSrc}
-                    height={478}
-                    width={478}
-                    alt={title}
+                    src={imgsrc}
+                    height={90}
+                    width={145}
+                    alt="promo-new-product"
                   />
                 </div>
-                <div className="priceSection">
-                  <div className="prices">
-                    {isPromoProd ? (
-                      <div>
-                        <p className="fadedPrice">
-                          Price: ${price} <span>-{discount}% OFF</span>
-                        </p>
-                        <p className="promoPrice">
-                          Promo price = <span>${discountPrice}</span>
-                        </p>
-                      </div>
-                    ) : isNewProd ? (
-                      <div>
-                        <p className="newProduct">
-                          <span>NEW</span> Product
-                        </p>
-                        <p className="price">Current price ${price}</p>
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="regularProduct">Regular Product</p>
-                        <p className="price">Current price ${price}</p>
-                      </div>
-                    )}
-                    <p className="warranty">
-                      Warranty: <span>{warranty}</span> months
-                    </p>
-                  </div>
+                <Image
+                  src={mainImgSrc}
+                  height={478}
+                  width={478}
+                  alt={title}
+                />
+              </div>
+              <div className="priceSection">
+                <div className="prices">
+                  {isPromoProd ? (
+                    <div>
+                      <p className="fadedPrice">
+                        Price: ${price} <span>-{discount}% OFF</span>
+                      </p>
+                      <p className="promoPrice">
+                        Promo price = <span>${discountPrice}</span>
+                      </p>
+                    </div>
+                  ) : isNewProd ? (
+                    <div>
+                      <p className="newProduct">
+                        <span>NEW</span> Product
+                      </p>
+                      <p className="price">Current price ${price}</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="regularProduct">Regular Product</p>
+                      <p className="price">Current price ${price}</p>
+                    </div>
+                  )}
+                  <p className="warranty">
+                    Warranty: <span>{warranty}</span> months
+                  </p>
                 </div>
+              </div>
 
-                <div className={`btn ${stock < 1 && 'outOfStock'} `}>
-                  <Link href={`${stock > 0 ? '/cart' : '#'}`} passHref>
-                    <button
-                      onClick={() =>
-                        stock > 0
-                          ? addToCart(
-                              id,
-                              title,
-                              stock,
-                              price,
-                              discount,
-                              mainImgSrc,
-                              numItems
-                            )
-                          : ''
-                      }
-                    >
-                      {stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-                      <div className="cartIconWrap">
-                        <Image
-                          src="/cartIcon-white.svg"
-                          height={18}
-                          width={18}
-                          alt="cartIcon"
-                        />
-                      </div>
-                    </button>
-                  </Link>
-                </div>
+              <div className={`btn ${stock < 1 && 'outOfStock'} `}>
+                <Link href={`${stock > 0 ? '/cart' : '#'}`} passHref legacyBehavior>
+                  <button
+                    onClick={() =>
+                      stock > 0
+                        ? addToCart(
+                            id,
+                            title,
+                            stock,
+                            price,
+                            discount,
+                            mainImgSrc,
+                            numItems
+                          )
+                        : ''
+                    }
+                  >
+                    {stock > 0 ? 'Add to Cart' : 'Out of Stock'}
+                    <div className="cartIconWrap">
+                      <Image
+                        src="/cartIcon-white.svg"
+                        height={18}
+                        width={18}
+                        alt="cartIcon"
+                      />
+                    </div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </ProductStyle>
-    </>
-  );
+      </div>
+    </ProductStyle>
+  </>;
 };
 
 export default ProductByID;

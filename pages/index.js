@@ -53,33 +53,31 @@ const Home = ({ data }) => {
 
   // console.log('myItems is ', myItems);
 
-  return (
-    <>
-      <Head>
-        <title>Mynet computer store</title>
-        <meta name="description" content="mynet best computer store" />
-      </Head>
-      <HomeStyle>
-        <div className="menu">
-          <MenuList />
+  return <>
+    <Head>
+      <title>Mynet computer store</title>
+      <meta name="description" content="mynet best computer store" />
+    </Head>
+    <HomeStyle>
+      <div className="menu">
+        <MenuList />
+      </div>
+      <div className="mainProductSection">
+        <TopBar title={topBarTitle} />
+        <div className="productCardsLayout">
+          {myItems.map(item => {
+            return (
+              (<Link href={`/products/${item.slug}`} key={item.id}>
+
+                <ProductCard item={item} />
+
+              </Link>)
+            );
+          })}
         </div>
-        <div className="mainProductSection">
-          <TopBar title={topBarTitle} />
-          <div className="productCardsLayout">
-            {myItems.map(item => {
-              return (
-                <Link href={`/products/${item.slug}`} key={item.id}>
-                  <a>
-                    <ProductCard item={item} />
-                  </a>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </HomeStyle>
-    </>
-  );
+      </div>
+    </HomeStyle>
+  </>;
 };
 
 export default Home;

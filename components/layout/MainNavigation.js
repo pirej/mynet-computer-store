@@ -93,16 +93,16 @@ const MainNavigation = () => {
       <div className="topHeader">
         <div className="imageWrapper">
           <Link href="/">
-            <a>
-              <Image src="/svg.svg" height={78} width={232} alt="logo" />
-            </a>
+
+            <Image src="/svg.svg" height={78} width={232} alt="logo" />
+
           </Link>
         </div>
         <nav>
           <ul>
             <li>
               {user ? (
-                <Link href="/user/logout">{`hi ${user.nickname}`}</Link>
+                <Link href="/user/logout" legacyBehavior>{`hi ${user.nickname}`}</Link>
               ) : (
                 <Link href="/user/login">login</Link>
               )}
@@ -115,31 +115,31 @@ const MainNavigation = () => {
           </ul>
           <div className={`cartWrapper ${itemsInCart > 0 && 'lessPadding'}`}>
             <Link href="/cart">
-              <a>
-                <div className="fullCart">
-                  {itemsInCart > 0 && (
-                    <div className="items">
-                      <div className="numbers">
-                        <p>{itemsInCart}</p>
-                      </div>
-                      <Image
-                        src="/cartItems.svg"
-                        height={24}
-                        width={24}
-                        alt="itemsInCart"
-                      />
+
+              <div className="fullCart">
+                {itemsInCart > 0 && (
+                  <div className="items">
+                    <div className="numbers">
+                      <p>{itemsInCart}</p>
                     </div>
-                  )}
-                  <div className="cart">
                     <Image
-                      src="/cartIcon.svg"
+                      src="/cartItems.svg"
                       height={24}
                       width={24}
-                      alt="cartIcon"
+                      alt="itemsInCart"
                     />
                   </div>
+                )}
+                <div className="cart">
+                  <Image
+                    src="/cartIcon.svg"
+                    height={24}
+                    width={24}
+                    alt="cartIcon"
+                  />
                 </div>
-              </a>
+              </div>
+
             </Link>
           </div>
         </nav>

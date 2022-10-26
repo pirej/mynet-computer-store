@@ -191,7 +191,7 @@ const MenuList = () => {
               </div>
             </div>
             <div>
-              <Link href="/">
+              <Link href="/" legacyBehavior>
                 <p>New & Promo Products</p>
               </Link>
             </div>
