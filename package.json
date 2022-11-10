@@ -15,7 +15,7 @@
     "@paypal/react-paypal-js": "^7.8.1",
     "graphql": "^16.5.0",
     "graphql-request": "^4.2.0",
-    "next": "^13.0.0",
+    "next": "^13.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.5"
