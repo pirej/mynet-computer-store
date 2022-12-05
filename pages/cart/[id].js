@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import MenuList from '../../components/menulist/MenuList';
 import TopBar from '../../components/productSection/TopBar';
 import useGetItemDetails from '../../utils/useGetItemDetails';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useProductContext } from '../../state/context/productContext';
 import Head from 'next/head';
