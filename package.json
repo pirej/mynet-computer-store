@@ -15,13 +15,13 @@
     "@paypal/react-paypal-js": "^7.8.1",
     "graphql": "^16.5.0",
     "graphql-request": "^4.2.0",
-    "next": "^13.0.2",
+    "next": "^13.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "eslint": "8.15.0",
-    "eslint-config-next": "12.1.6"
+    "eslint-config-next": "^13.0.6"
   }
 }
